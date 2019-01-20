@@ -31,6 +31,10 @@
 #ifndef PORT_LED_BUILTIN
 #define PORT_LED_BUILTIN PORTB
 #endif
+
+#define OUTPUT 1
+#define LOW 0
+#define HIGH 1
 /*****************************************************************/
 
 /*****************************************************************/
@@ -45,15 +49,15 @@ static void set_bit_u8(volatile uint8_t *b, unsigned index, int val);
 void setup(void)
 {
 	/* set LED_BUILTIN for output */
-	set_bit_u8(&DDR_LED_BUILTIN, DD_LED_BUILTIN, 1);
+	set_bit_u8(&DDR_LED_BUILTIN, DD_LED_BUILTIN, OUTPUT);
 }
 
 void loop(void)
 {
-	set_bit_u8(&PORT_LED_BUILTIN, PB_LED_BUILTIN, 1);
+	set_bit_u8(&PORT_LED_BUILTIN, PB_LED_BUILTIN, LOW);
 	_delay_ms(Blink_delay_milliseconds);
 
-	set_bit_u8(&PORT_LED_BUILTIN, PB_LED_BUILTIN, 0);
+	set_bit_u8(&PORT_LED_BUILTIN, PB_LED_BUILTIN, HIGH);
 	_delay_ms(Blink_delay_milliseconds);
 }
 
