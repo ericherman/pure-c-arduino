@@ -1,0 +1,39 @@
+pure-c-arduino
+
+Experimenting with using plain-old pure C for programming the
+Arduino platform.
+
+This is the @ericherman workbook for exploring the hardware.
+Currently this is only looking at avr-based Arduinos.
+
+The Arduino hardware and libraries have opened an amazing number of
+doors for many people. The focus on ease-of-use has surely been a
+big advantage in this.  The trade-offs in favor of simplicity
+naturally obfuscates some of the low-level interaction with the
+hardware. Some of the library choices while likely very good for the
+beginner do little to empower advanced learning; perhaps this
+project will serve that end.
+
+
+How-to:
+--------
+
+look in "01-basics" to find the pure-c "blink.c" which is similar to
+the Arduino example "blink.ino".
+
+The 01-basics/Makefile tries not to be too magical, look there to
+set the parameters matching the hardware. Currently Arduino Mega2560
+is the default.
+
+Use "make" to build the firmware.
+
+Use "make upload-blink" to push the firmware to the arduino.
+
+
+License
+-------
+
+Licensed under the terms of the GNU Lesser General Public License
+(LGPL), version 3 or later.
+
+See COPYING and COPYING.LESSER for details.
