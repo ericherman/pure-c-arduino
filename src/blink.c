@@ -1,5 +1,8 @@
+/* SPDX-License-Identifier: LGPL-3.0-or-later */
 /* blink.c: very basic firmware for an avr Arduino Mega2560
- * Copyright (c) 2019 Eric Herman <eric@freesa.org>
+ * Copyright (c) 2019, 2020 Eric Herman <eric@freesa.org>
+ * https://github.com/ericherman/raw-c-arduino
+ * https://www.gnu.org/licenses/lgpl-3.0.txt
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

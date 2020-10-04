@@ -1,6 +1,6 @@
-pure-c-arduino
+raw-c-arduino
 
-Experimenting with using plain-old pure C for programming the
+Experimenting with using plain-old raw C for programming the
 Arduino platform.
 
 This is the @ericherman workbook for exploring the hardware.
@@ -18,16 +18,28 @@ project will serve that end.
 How-to:
 --------
 
-look in "01-basics" to find the pure-c "blink.c" which is similar to
-the Arduino example "blink.ino".
+Look in "src" to find the raw-c "blink.c" which is similar to
+the Arduino example "blink.ino", or the "hello-serial.c" which is
+shows very basic serial communication.
 
-The 01-basics/Makefile tries not to be too magical, look there to
-set the parameters matching the hardware. Currently Arduino Mega2560
-is the default.
+The Makefile tries not to be too magical, look there to set the
+parameters matching the hardware. Currently Arduino Mega2560 is the
+default.
+
+The Makefile assumes "avr-gcc" is in the PATH. An avr-gcc toolchain
+can be built using:
+
+	https://github.com/ericherman/avr-toolchain-build
 
 Use "make" to build the firmware.
 
-Use "make upload-blink" to push the firmware to the arduino.
+Use "make upload-blink" or "make upload-hello-serial" to push the
+firmware to the arduino.
+
+To test "hello-serial", GNU Screen can be used:
+	screen -l /dev/ttyUSB0
+or
+	screen -l /dev/ttyACM0
 
 
 License

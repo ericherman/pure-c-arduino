@@ -50,8 +50,10 @@ reset-arduino:
 %.hex : %.bin
 	avr-objcopy -O ihex -R .eeprom $< $@
 
-blink.bin: blink.c
-	$(CC) $(CFLAGS) -o blink.bin blink.c
+blink.bin: src/blink.c
+	$(CC) $(CFLAGS) -o blink.bin src/blink.c
+
+blink: blink.hex
 
 upload-blink: blink.hex reset-arduino
 	avrdude -v \
@@ -61,8 +63,10 @@ upload-blink: blink.hex reset-arduino
 		-P $(PORT) \
 		-U flash:w:blink.hex:i
 
-hello-serial.bin: hello-serial.c
-	$(CC) $(CFLAGS) -o hello-serial.bin hello-serial.c
+hello-serial.bin: src/hello-serial.c
+	$(CC) $(CFLAGS) -o hello-serial.bin src/hello-serial.c
+
+hello-serial: hello-serial.hex
 
 upload-hello-serial: hello-serial.hex reset-arduino
 	avrdude -v \
@@ -78,13 +82,11 @@ all: blink.hex hello-serial.hex
 
 # extracted from https://github.com/torvalds/linux/blob/master/scripts/Lindent
 LINDENT=indent -npro -kr -i8 -ts8 -sob -l80 -ss -ncs -cp1 -il0
-
 tidy:
 	$(LINDENT) \
 		-T size_t \
 		-T uint8_t \
-		`find . -type f -name '*.h' -o -name '*.c'`
-
+		`find src -type f -name '*.h' -o -name '*.c'`
 
 flags:
 	@echo $(CC) $(CFLAGS)
