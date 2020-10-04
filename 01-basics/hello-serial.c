@@ -202,7 +202,13 @@ size_t our_strlen(const char *s)
 
 static void uart_9600(void)
 {
-#undef BAUD			// avoid compiler warning
+// The header "util/setbaud.h" can be included multiple times which
+// is useful for creating functions for various baud rates. The
+// "BAUD" macro is similar to a parameter to the setbaud macros and
+// must be defined before util/setbaud.h is included. Always #undef
+// BAUD before #define BAUD in order to avoid a possible compiler
+// redefine warning.
+#undef BAUD
 #define BAUD 9600
 #include <util/setbaud.h>
 	UBRRH = UBRRH_VALUE;
