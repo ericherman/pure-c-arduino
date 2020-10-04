@@ -50,7 +50,7 @@ void loop(void)
 
 	serial_read_str(buf, buflen);
 
-	output = "\nreceived: '";
+	output = "received: '";
 	serial_print_str(output, our_strlen(output));
 	serial_print_str(buf, our_strlen(buf));
 	output = "'\n";
@@ -86,10 +86,13 @@ size_t serial_read_str(char *buf, size_t len)
 		switch (c) {
 		case '\r':
 		case '\n':
+			uart_char_send('\r');
+			uart_char_send('\n');
 			return i;
 		default:
 			buf[i++] = c;
 			buf[i] = '\0';
+			uart_char_send(c);
 		}
 	}
 
